@@ -146,15 +146,22 @@ int main(){
     ///// VECTOR /////////////////
 
     int arr[5];
-    vector<int> v(5);
+    // vector<int> v(5);
 
-    cout<<"Size of Vector : " << v.size();
-    cout << endl ;
+    // cout<<"Size of Vector : " << v.size();
+    // cout << endl ;
 
-    for(int i = 0 ; i < v.size() ; i++){
-        cout<< v[i]<<" ";
-    }
-    cout<<endl; 
+    // for(int i = 0 ; i < v.size() ; i++){
+    //     cout<< v[i]<<" ";
+    // }
+    // cout<<endl; 
+
+    // Insert 
+    // arr.push_back(4);
+    // arr.push_back(4);
+    // arr.push_back(4);
+    // arr.push_back(4);
+
    
 
     return 0 ; 
