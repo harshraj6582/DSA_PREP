@@ -3,7 +3,7 @@
 
 class Solution {
 public:
-    std::vector<int> findClosestElements(std::vector<int>& arr, int k, int x) {
+    vector<int> findClosestElements(std::vector<int>& arr, int k, int x) {
         int l = 0;
         int size = arr.size();
        vector<int> result;
@@ -20,7 +20,7 @@ public:
             }
         }
         
-        // Copy k elements starting from 'l' into the result vector
+       
         for (int i = l; i <= h; ++i) {
             result.push_back(arr[i]);
         }
