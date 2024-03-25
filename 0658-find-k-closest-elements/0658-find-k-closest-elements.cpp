@@ -21,10 +21,11 @@ public:
         }
         
        
-        for (int i = l; i <= h; ++i) {
-            result.push_back(arr[i]);
-        }
+       auto   first = arr.begin() + l;
+       auto    last = arr.begin() + h + 1;
         
-        return result;
+        
+        arr.assign(first, last);
+        return arr ; 
     }
 };
