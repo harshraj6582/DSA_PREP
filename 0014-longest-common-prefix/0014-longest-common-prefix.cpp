@@ -1,7 +1,10 @@
 class Solution {
 public:
     string longestCommonPrefix(vector<string>& v) {
-        // The Concept 
+        // The Concept is using that the array is sorted in the 
+        // Lexicographically Order which means that the main difference will 
+        // only occur in the first and the last String 
+        // So we are just comparing the first and the last element 
         string ans="";
         sort(v.begin(),v.end());
         int n=v.size();
