@@ -1,19 +1,38 @@
+#include <string>
+#include <vector>
+using namespace std;
+
 class Solution {
 public:
     string longestCommonPrefix(vector<string>& v) {
-        // The Concept is using that the array is sorted in the 
-        // Lexicographically Order which means that the main difference will 
-        // only occur in the first and the last String 
-        // So we are just comparing the first and the last element 
-        string ans="";
-        sort(v.begin(),v.end());
-        int n=v.size();
-        string first=v[0],last=v[n-1];
-        for(int i=0;i<min(first.size(),last.size());i++){
-            if(first[i]!=last[i]){
-                return ans;
+        int size = v.size();
+        if (size == 0) return ""; // Handle the case where the vector is empty
+        
+        string ans;
+        char current_char = 0;
+        bool flag = true;
+
+        int i = 0; // Declare i here
+
+        while (true) {
+            for (auto &str : v) {
+                if (i >= str.size()) {
+                    flag = false;
+                    break;
+                }
+                if (current_char == 0) {
+                    current_char = str[i];
+                } else if (str[i] != current_char) {
+                    flag = false;
+                    break;
+                }
             }
-            ans+=first[i];
+            if (!flag) {
+                break;
+            }
+            ans += current_char;
+            current_char = 0; // Reset current_char
+            i++; // Increment i here
         }
         return ans;
     }
