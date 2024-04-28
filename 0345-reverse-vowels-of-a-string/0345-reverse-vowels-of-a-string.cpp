@@ -12,12 +12,12 @@ public:
         
         // Two Pointer Approach along with While Loop and Bool Function 
         while(start<end){
-            if(vowel(s[start]) && !vowel(s[end])){
-                end--;
+            if(!vowel(s[start]) ){
+                start++;
               
             } 
-             else if(!vowel(s[start]) && vowel(s[end])){
-                start++;
+             else if(!vowel(s[end]) ){
+                end--;
             } 
             
              else if(vowel(s[start]) && vowel(s[end])){
@@ -26,10 +26,7 @@ public:
                  end--;
                  
             } 
-            else{
-                start++;
-                end-- ; 
-            }
+           
             
             
         }
