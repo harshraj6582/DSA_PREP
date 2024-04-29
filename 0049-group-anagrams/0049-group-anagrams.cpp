@@ -1,27 +1,33 @@
+#include <iostream>
+#include <vector>
+#include <array>
+#include <map>
+#include <algorithm>
+
+using namespace std;
+
 class Solution {
 public:
+    array<int, 256> hash(string s) {
+        array<int, 256> hash = {0};
+        for (int i = 0; i < s.size(); i++) {
+            hash[s[i]]++;
+        }
+        return hash;
+    }
+
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
-       // We are using unorderd_map because the answer is not required in the 
-       // sorted order 
-        unordered_map<string , vector<string>> anag ;
-        // Now iterating through each of the elements 
-        
-        for(auto &word : strs){
-            string sortedWord = word ;
-            sort(sortedWord.begin() , sortedWord.end());
-            anag[sortedWord].push_back(word);
-            // This will push the string elements corresponding to the sorted word
+       map<array<int, 256>, vector<string>> mp;
+
+        for (auto str : strs) {
+            mp[hash(str)].push_back(str);
         }
-        // Now we have to return the vector of vector strings 
-        vector<vector<string>> ans ;
-        for(auto &word : anag){
-            ans.push_back(word.second);
+
+        vector<vector<string>> ans;
+        for (auto it = mp.begin(); it != mp.end(); it++) {
+            ans.push_back(it->second);
         }
-        
-        
-        return ans ; 
-        
-            
-        }
-    
+
+        return ans;
+    }
 };
