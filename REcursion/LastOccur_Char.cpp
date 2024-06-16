@@ -1,9 +1,9 @@
 #include <iostream>
 #include <cstring> // For strchr and strrchr
-#include <vector>
+#include <string>
 using namespace std;
 
-// Search From Left to Right
+// Search From Left to Right (Iterative)
 int Search_Left(const string& s, char target) {
     int size = s.size();
     int ans = -1; // Use -1 to indicate "not found"
@@ -17,7 +17,7 @@ int Search_Left(const string& s, char target) {
     return ans;
 }
 
-// Search From Right to Left
+// Search From Right to Left (Iterative)
 int Search_Right(const string& s, char target) {
     int size = s.size();
     int ans = -1; // Use -1 to indicate "not found"
@@ -64,21 +64,25 @@ int main() {
     char target = 'h';
     int i = 0;
 
+    // Search from Left to Right (Iterative)
     int left = Search_Left(word, target);
-    cout << "This is using the approach from the Left Traversing: " << left << endl;
+    cout << "Using iterative left search: " << left << endl;
 
+    // Search from Right to Left (Iterative)
     int right = Search_Right(word, target);
-    cout << "This is using the approach from the Right Traversing: " << right << endl;
+    cout << "Using iterative right search: " << right << endl;
 
     // Convert std::string to C-style string
     const char* c_word = word.c_str();
 
     //// USING RECURSION ////////////////////
+    // Search from Left to Right (Recursive)
     int leftrec = leftRecursion(word, target, i);
-    cout << "This is using recursion from the Left Traversing: " << leftrec << endl;
+    cout << "Using recursion from the left: " << leftrec << endl;
 
+    // Search from Right to Left (Recursive)
     int rightrec = rightRecursion(word, target, word.size() - 1);
-    cout << "This is using recursion from the Right Traversing: " << rightrec << endl;
+    cout << "Using recursion from the right: " << rightrec << endl;
 
     // Find the first occurrence using strchr
     const char* firstOccurrence = strchr(c_word, target);
