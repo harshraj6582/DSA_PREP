@@ -41,6 +41,9 @@ int main() {
         cout << st.top() << endl;
         st.pop();
     }
+    if(st.empty()){
+        cout<<"This Stack is now Empty";
+    }
 
     return 0;
 }
