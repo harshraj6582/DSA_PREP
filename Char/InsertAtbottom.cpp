@@ -18,19 +18,33 @@ void insertElement(stack<int> &st, int x) {
     st.push(temp);
 }
 
+void emptyStack(stack<int> &st){
+    if(st.empty()){
+        return ; 
+    }
+    int temp = st.top();
+    st.pop();
+    emptyStack(st);
+    insertElement(st, temp);
+    
+}
+
 int main() {
     stack<int> st;
-    st.push(10);
+    st.push(50);
     st.push(20);
-    st.push(30);
-    st.push(40);
+    st.push(780);
+    st.push(90);
     st.push(50);
     st.push(60);
     st.push(70);
 
     int x = 25;
     
-    insertElement(st, x);
+    emptyStack(st);
+
+    
+    
 
     while (!st.empty()) {
         int curr = st.top();
