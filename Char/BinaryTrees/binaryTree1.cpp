@@ -24,14 +24,16 @@ class BinaryTree {
  BinaryTree* creation(){
         // This is called for the creation of the Binary Tree 
         int data ; 
-        cout<<"Enter the Value of the Element";
+        cout<<"Enter the Value of the Element :::";
         cin >> data ; 
         if(data == -1){
             return NULL;
         }
         BinaryTree* root = new BinaryTree(data);
+        cout<<"Entering the Value of the Left Subtree of "<<data<<endl;
 
         root->left = creation();
+         cout << "Entering right subtree of " << data << endl;
         root->right = creation();
 
         // After the Element we will just complete the process and just return the tree\
@@ -40,9 +42,40 @@ class BinaryTree {
         return root ;
     }
 
+void InorderTraversal(BinaryTree* root){
+    // Base Case to check if the root of the Pointer is just null 
+
+    if(root == NULL){
+        return ; 
+        // This is the Condition in which the root of the elements gets empty 
+    }
+    // LNR
+    //L
+    InorderTraversal(root->left);
+    cout<<root->data;
+    InorderTraversal(root->right);
+
+}
+void PreOrderTraversal(BinaryTree* root){
+    // Base Case to check if the root of the Pointer is just null 
+
+    if(root == NULL){
+        return ; 
+        // This is the Condition in which the root of the elements gets empty 
+    }
+    // LNR
+    //L
+     cout<<root->data;
+    InorderTraversal(root->left);
+   
+    InorderTraversal(root->right);
+
+}
+
 
 int main(){
 
     BinaryTree* root = creation();
+    InorderTraversal(root);
     return 0 ;
 }
