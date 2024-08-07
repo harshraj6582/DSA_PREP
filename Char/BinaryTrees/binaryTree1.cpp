@@ -102,10 +102,38 @@ void LevelOrderTraversal(BinaryTree* root){
     
 }
 
+void LevelOrderTraversalQueue(BinaryTree* root){
+    // We will be using the concept of Queue 
+    queue<BinaryTree*> q1;
+
+    if(root == NULL){
+        return ; 
+    }
+    q1.push(root);
+    
+    // Loop for checking if the Queue is Basically Non Empty 
+    while(!q1.empty()){
+        // This is used for checking if the Queue elements are basically Non Empty 
+        BinaryTree* temp = q1.front();
+        q1.pop();
+         cout << temp->data << " ";
+
+        // Check if the Left and Right Elements of the Queue Do exists 
+        if(root-> left != NULL){
+            q1.push(temp->left);
+        }
+        if(root-> right != NULL){
+            q1.push(temp->right);
+        }
+        // Now The Elements are being Inserted from Left to Right 
+       
+    }
+}
+
 
 int main(){
 
     BinaryTree* root = createSampleTree();
-    LevelOrderTraversal(root);
+    LevelOrderTraversalQueue(root);
     return 0 ;
 }
