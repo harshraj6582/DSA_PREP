@@ -21,26 +21,16 @@ class BinaryTree {
    
 };
 
- BinaryTree* creation(){
-        // This is called for the creation of the Binary Tree 
-        int data ; 
-        cout<<"Enter the Value of the Element :::";
-        cin >> data ; 
-        if(data == -1){
-            return NULL;
-        }
-        BinaryTree* root = new BinaryTree(data);
-        cout<<"Entering the Value of the Left Subtree of "<<data<<endl;
-
-        root->left = creation();
-         cout << "Entering right subtree of " << data << endl;
-        root->right = creation();
-
-        // After the Element we will just complete the process and just return the tree\
-
-       
-        return root ;
-    }
+ BinaryTree* createSampleTree() {
+    BinaryTree* root = new BinaryTree(1);
+    root->left = new BinaryTree(2);
+    root->right = new BinaryTree(3);
+    root->left->left = new BinaryTree(4);
+    root->left->right = new BinaryTree(5);
+    root->right->left = new BinaryTree(6);
+    root->right->right = new BinaryTree(7);
+    return root;
+}
 
 void InorderTraversal(BinaryTree* root){
     // Base Case to check if the root of the Pointer is just null 
@@ -66,16 +56,56 @@ void PreOrderTraversal(BinaryTree* root){
     // LNR
     //L
      cout<<root->data;
-    InorderTraversal(root->left);
+    PreOrderTraversal(root->left);
    
-    InorderTraversal(root->right);
+    PreOrderTraversal(root->right);
 
+}
+
+int Height(BinaryTree* root){
+    // To calculate the heigh  of the Binary tree 
+    if(root == NULL){
+        return 0 ; 
+    }
+    int leftHeight = Height(root->left);
+    int rightHeight = Height(root->right);
+    int maxHeight = max(leftHeight, rightHeight) + 1 ;
+    
+
+    return maxHeight ; 
+}
+
+void HelperLevelOrderTraversal(BinaryTree* root , int i ){
+    // This function is basically used for printing the level order traversal of the tree 
+    if(root == NULL){
+        return ; 
+    }
+    else if (i == 1 ){
+        // This will be used for Printing  the Data of the Tree 
+        cout<<root->data;
+    }
+    else {
+        HelperLevelOrderTraversal(root->left , i - 1 );
+        HelperLevelOrderTraversal(root->right , i - 1 );
+    }
+}
+
+
+void LevelOrderTraversal(BinaryTree* root){
+    // Printing in Order Traversal would first require to calculate the height of the tree 
+    int h = Height(root);
+    // This would calculate the height of the tree 
+    for(int i = 1 ;  i <= h ; i++){
+        // This is basically a helper function for  better understanding of the code
+        HelperLevelOrderTraversal(root , i );
+    }
+    
 }
 
 
 int main(){
 
-    BinaryTree* root = creation();
-    InorderTraversal(root);
+    BinaryTree* root = createSampleTree();
+    LevelOrderTraversal(root);
     return 0 ;
 }
