@@ -1,5 +1,7 @@
 #include<iostream>
 #include<queue>
+#include<unordered_map>
+#include <map>
 using namespace std ; 
 
 class Node{
@@ -122,6 +124,42 @@ void printRightView(Node* root , int level , vector<int>& RightView){
    
 }
 
+// Printing the Top View Of the Binary Tree 
+void printTopView(Node* root){
+    // Make a map for the Mapping for the Int Pointer for the Int Pointer 
+    map<int,int> hdtoNodemap;
+    queue<pair<Node* , int>> q ;
+    q.push(make_pair(root,0));
+
+    while(!q.empty()){
+        // Make a Pair for the 
+        pair<Node* , int> temp = q.front();
+        q.pop();
+
+        Node* frontNode = temp.first;
+        int hd = temp.second;
+
+        // If there is no Entry for the particualar Horizontal Distance then 
+        // Create a new entry 
+        if(hdtoNodemap.find(hd) == hdtoNodemap.end()){
+            // This means that threr is not entry for the particular Node 
+            hdtoNodemap[hd] = frontNode->data ; 
+        }
+
+        // TO add the Child also 
+        if(frontNode->left != NULL){
+            q.push(make_pair(frontNode->left , hd - 1 ));
+
+        }
+        if(frontNode->right != NULL){
+            q.push(make_pair(frontNode->right , hd + 1 ));
+        }
+        cout<<"printing the Top View ";
+        for(auto it : hdtoNodemap){
+            cout<<it.second<<" ";
+        }
+    }
+}
 int main(){
     Node* root = createTree();
     levelOrderTraversal(root);
@@ -129,19 +167,22 @@ int main(){
     vector<int> leftView;
     vector<int> RightView;
 
-    printLeftView(root , 0 , leftView);
-    for(int i = 0 ; i < leftView.size() ; i++){
-        cout<<leftView[i]<<" ";
-    }
+    // printLeftView(root , 0 , leftView);
+    // for(int i = 0 ; i < leftView.size() ; i++){
+    //     cout<<leftView[i]<<" ";
+    // }
 
 
 
-    cout<<"Printing the Right Order of the Tree";
+    // cout<<"Printing the Right Order of the Tree";
 
-     printRightView(root , 0 , RightView);
-    for(int i = 0 ; i < RightView.size() ; i++){
-        cout<<RightView[i]<<" ";
-    }
+    //  printRightView(root , 0 , RightView);
+    // for(int i = 0 ; i < RightView.size() ; i++){
+    //     cout<<RightView[i]<<" ";
+    // }
+    printTopView(root);
+   
+   
 
     return 0 ;
 }
