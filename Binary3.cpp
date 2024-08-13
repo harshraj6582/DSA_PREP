@@ -160,6 +160,108 @@ void printTopView(Node* root){
         }
     }
 }
+
+
+void Bottomview(Node* root){
+    // Make a map for the Mapping for the Int Pointer for the Int Pointer 
+    map<int,int> hdtoNodemap;
+    queue<pair<Node* , int>> q ;
+    q.push(make_pair(root,0));
+
+    while(!q.empty()){
+        // Make a Pair for the 
+        pair<Node* , int> temp = q.front();
+        q.pop();
+
+        Node* frontNode = temp.first;
+        int hd = temp.second;
+
+        // If there is no Entry for the particualar Horizontal Distance then 
+        // Create a new entry 
+        
+            // This means that threr is not entry for the particular Node 
+            hdtoNodemap[hd] = frontNode->data ; 
+        
+
+        // TO add the Child also 
+        if(frontNode->left != NULL){
+            q.push(make_pair(frontNode->left , hd - 1 ));
+
+        }
+        if(frontNode->right != NULL){
+            q.push(make_pair(frontNode->right , hd + 1 ));
+        }
+        
+    }
+    cout<<"printing the Bottom  View ";
+        for(auto it : hdtoNodemap){
+            cout<<it.second<<" ";
+        }
+}
+
+void printLeftBoindary(Node* root){
+    if(root == NULL){
+        return ; 
+    }
+    if(root->left == NULL && root->right == NULL){
+        return ; 
+    }
+    cout<<root->data<<" ";
+    if(root->left != NULL){
+        printLeftBoindary(root->left);
+    }
+    else{
+        printLeftBoindary(root->right);
+    }
+}
+
+void printLeafBoundary(Node* root){
+    // Will Traverse the whole Tree from left to right but 
+    // only consider the leaf nodes 
+
+    if(root == NULL){
+        return ; 
+    }
+    if(root->left == NULL && root->right == NULL){
+        cout<<root->data<<" ";
+    }
+    printLeafBoundary(root->left);
+    printLeafBoundary(root->right);
+}
+void printRightBoundary(Node* root){
+    // This would be required but the printing would in 
+    // Opposite manner 
+     if(root == NULL){
+        return ; 
+    }
+    if(root->left == NULL && root->right == NULL){
+        return ; 
+    }
+   
+    if(root->right != NULL){
+        printRightBoundary(root->right);
+    }
+    else{
+        printRightBoundary(root->left);
+    }
+     cout<<root->data<<" ";
+
+}
+void BoundaryTraversal(Node* root){
+    if(root == NULL){
+        return ; 
+        // As this is base case so we cannot point 
+    }
+    printLeftBoindary(root);
+    printLeafBoundary(root);
+    if(root->right != NULL){
+        printRightBoundary(root->right);
+    }
+    else{
+         printRightBoundary(root->left);
+    }
+    
+}
 int main(){
     Node* root = createTree();
     levelOrderTraversal(root);
@@ -180,7 +282,13 @@ int main(){
     // for(int i = 0 ; i < RightView.size() ; i++){
     //     cout<<RightView[i]<<" ";
     // }
-    printTopView(root);
+    // printTopView(root);
+    //  Bottomview(root);
+
+    // printLeftBoindary(root);
+    // printLeafBoundary(root);
+    // printRightBoundary(root);
+    BoundaryTraversal(root);
    
    
 
