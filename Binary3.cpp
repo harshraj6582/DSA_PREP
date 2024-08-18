@@ -263,7 +263,7 @@ void BoundaryTraversal(Node* root){
     
 }
 int main(){
-    Node* root = createTree();
+    Node* root = createTree(ṇ);
     levelOrderTraversal(root);
     cout<<"Printing the Left View of the Binary Tree";
     vector<int> leftView;
