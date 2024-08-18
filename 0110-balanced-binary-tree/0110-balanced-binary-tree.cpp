@@ -12,53 +12,20 @@
 class Solution {
 public:
 
-    int height(TreeNode* root){
-        if(root == NULL){
-            return  0 ;
-        }
+bool isbalanced = true ; 
+int height(TreeNode* root){
+    if(root == 0) return 0 ;
 
-        int leftans = height(root->left);
-        int rightans = height(root->right);
-        int ans = max(leftans , rightans) + 1 ;
-        return ans ; 
+    int lh = height(root->left);
+    int rh = height(root->right);
+    if (abs(lh-rh) > 1 ){
+        isbalanced = false ; 
     }
-
-
-
+    return max(lh , rh) + 1 ;
+}
     bool isBalanced(TreeNode* root) {
-        // To check if the following tree is being Balanced or not 
-        // SO that the differnce between the Two Nodes is not more than 1 
-
-        // Conditions to be Check 
-        // 1- If the Left Part of Tree is being Balanced 
-        // 2- If the Right Part of the Tree is being Balanced 
-        // 3- The Differnce between the LEft and the right is not more than 1 
-
-
-        // If the Root is being NULL so the Tree is already balanced 
-        if(root == NULL){
-            return true ; // BASE CASE 
-        }
-
-        int leftHeight = height(root->left);
-        int rightHeight = height(root->right);
-        int dif = abs(leftHeight-rightHeight);
-
-        bool currentNodeAns = (dif <=1);
-
-        bool leftans = isBalanced(root->left);
-        bool rightans = isBalanced(root->right);
-
-
-        if(currentNodeAns && leftans && rightans){
-            return true ; 
-        }
-        else{
-            return false ; 
-        }
-
-
-
         
+        height(root);
+        return isbalanced;
     }
 };

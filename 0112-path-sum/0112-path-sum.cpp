@@ -26,7 +26,7 @@ public:
                 return true ;
             }
             else {
-                false ; 
+                return false ; 
             }
         }
        bool la =  ans(root->left , targetSum , sum);
