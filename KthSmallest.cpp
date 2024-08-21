@@ -1,28 +1,28 @@
-// As the Property of BST the Nodes are being in the SOrted ORder in 
-// Inorder Traversal So we would be Tarversing the BST using the Inorder Traversal 
-// And Keeping point of the K th smallest Element 
+// // As the Property of BST the Nodes are being in the SOrted ORder in 
+// // Inorder Traversal So we would be Tarversing the BST using the Inorder Traversal 
+// // And Keeping point of the K th smallest Element 
 
-int kthSmallest(TreeNode* root , int& k ){
+// int kthSmallest(TreeNode* root , int& k ){
     
-    if(root == NULL){
-        return -1 ; 
-    }
+//     if(root == NULL){
+//         return -1 ; 
+//     }
 
-    int leftans = kthSmallest(root->left , k);
-    if(leftans != -1 ){
-        return leftans ; 
-    }
+//     int leftans = kthSmallest(root->left , k);
+//     if(leftans != -1 ){
+//         return leftans ; 
+//     }
 
-    // Now Decrementing the Value of K 
-    k--;
+//     // Now Decrementing the Value of K 
+//     k--;
 
-    if(k == 0)
-    {
-        return root->val ; 
+//     if(k == 0)
+//     {
+//         return root->val ; 
 
-    }
+//     }
 
-    // Right One 
-    int rightans = kthSmallest(root->right , k );
-    return rightans ; 
-}
+//     // Right One 
+//     int rightans = kthSmallest(root->right , k );
+//     return rightans ; 
+// }b
