@@ -182,6 +182,64 @@ bool SearchBST(Node* root  , int target){
     return la|| ra ; 
 }
 
+
+Node* deleteFromBST(Node* root , int target) {
+    // Search for the Target 
+    // Then Delete the Target as soon as Possible 
+
+    if(root == NULL){
+        return NULL ; 
+        // This is a condition in which there is no Nodes to be delete 
+        // from the Binary Search Tree
+    }
+    if(root->data == target)
+    {
+        // Now the target is just marked 
+        // There are basically 4 Cases in this 
+        if(root->left == NULL && root->right == NULL) 
+        {
+            // This is the Condition of Leaf Node 
+            delete root ; 
+            return NULL ; 
+        }
+
+        else if(root->left != NULL && root->right == NULL)
+         {
+            // This is the 2nd Case in which the LEft is Not null 
+            Node* childSubtree = root->left ; 
+            delete root ; 
+            return childSubtree; 
+
+
+        }
+        else if(root->left == NULL && root->right != NULL)
+        {
+            Node* childSubtree = root->right ; 
+            delete root ; 
+            return childSubtree; 
+        }
+        else {
+            // This is the Case in which Both of the Nodes are being not NULL 
+            Node* maxi = maxValue(root->left);
+            root->data = maxi->data ; 
+            // Delete the actual Maxi Vala Value 
+            root->left = deleteFromBST(root->left , maxi->data);
+            return root ; 
+        }
+    }
+
+    else if(root->data > target) {
+		//left me chalo
+		root->left =  deleteFromBST(root->left,  target);
+	}
+	else {
+		//right me jao
+		root->right =  deleteFromBST(root->right, target);
+	}
+}
+
+
+
 int main(){
 
     // Creation of the Node as their is case in which the Data has to Inserted 
