@@ -49,7 +49,7 @@
 //       //last element ko delete uski original position se
 //       size--;
 //       int index = 1;
-//       while(index < size ) {
+//       while(index < size ) {  v 
 //           int leftIndex = 2*index;
 //           int rightIndex = 2*index+1;
 
