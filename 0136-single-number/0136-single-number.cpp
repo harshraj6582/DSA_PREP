@@ -7,7 +7,7 @@ public:
             mp[num]++;
         }
 
-        for (const auto& pair : mp){
+        for ( auto& pair : mp){
             if(pair.second == 1 ){
                 return pair.first ; 
             }
