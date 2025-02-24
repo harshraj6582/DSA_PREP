@@ -1,18 +1,18 @@
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) 
-    {
-        unordered_map<int , int > mp ; 
-        for(int i = 0 ; i < nums.size() ;  i++){
-            int a  = nums[i];
-            int complement = target - a ;
-            if(mp.find(complement) != mp.end()){
-                return  {mp[complement] , i };
-            }
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> ans;  
 
-            mp[a] = i ;
+        for (int i = 0; i < nums.size() - 1 ; i++) {
+            for (int j = i + 1; j < nums.size(); j++) {
+                if (nums[i] + nums[j] == target) {
+                    ans.push_back(i);
+                    ans.push_back(j);
+                    return ans;  // Return immediately after finding the first pair
+                }
+            }
         }
-       
-       return {} ; 
+        
+        return ans;  // Should never reach here as per problem constraints
     }
 };
